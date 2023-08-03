@@ -1,0 +1,17 @@
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.AssemblyInfo.cs
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Infrastructure.deps.json
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Infrastructure.dll
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Infrastructure.pdb
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Application.dll
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Domain.dll
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Application.pdb
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\bin\Debug\net7.0\BinaAz.Domain.pdb
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.csproj.CopyComplete
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.dll
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\refint\BinaAz.Infrastructure.dll
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\BinaAz.Infrastructure.pdb
+C:\Users\Nurlan Khankishiyev\RiderProjects\BinaAz\Infrastructure\BinaAz.Infrastructure\obj\Debug\net7.0\ref\BinaAz.Infrastructure.dll

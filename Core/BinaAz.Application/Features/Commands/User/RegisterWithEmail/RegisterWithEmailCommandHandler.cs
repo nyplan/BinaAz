@@ -1,0 +1,31 @@
+﻿using BinaAz.Application.Abstractions.Services;
+using BinaAz.Application.DTOs.User;
+using MediatR;
+
+namespace BinaAz.Application.Features.Commands.User.RegisterWithEmail;
+ 
+public class RegisterWithEmailCommandHandler : IRequestHandler<RegisterWithEmailCommandRequest, RegisterWithEmailCommandResponse>
+{
+    private readonly IUserService _userService;
+
+    public RegisterWithEmailCommandHandler(IUserService userService)
+    {
+        _userService = userService;
+    }
+
+    public async Task<RegisterWithEmailCommandResponse> Handle(RegisterWithEmailCommandRequest request,
+        CancellationToken cancellationToken)
+    {
+        CreateUserResponse response = await _userService.CreateAsync(new()
+        {
+            Email = request.Dto.Email,
+            Password = request.Dto.Password,
+            PasswordConfirm = request.Dto.PasswordConfirm
+        });
+        return new()
+        {
+            Message = response.Message,
+            Succeeded = response.Succeeded
+        };
+    }
+}
