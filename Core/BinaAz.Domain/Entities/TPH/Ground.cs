@@ -1,4 +1,6 @@
-﻿namespace BinaAz.Domain.Entities.TPH;
+﻿using BinaAz.Domain.Entities.TPH.Base;
+
+namespace BinaAz.Domain.Entities.TPH;
 
 public class Ground : Item
 {

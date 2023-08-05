@@ -1,0 +1,16 @@
+BinaAz.sln.DotSettings.user
+/.idea
+/.vs
+/Core/BinaAz.Application/bin
+/Core/BinaAz.Application/obj
+/Core/BinaAz.Domain/bin
+/Core/BinaAz.Domain/obj
+/Infrastructure/BinaAz.Infrastructure/bin
+/Infrastructure/BinaAz.Infrastructure/obj
+/Infrastructure/BinaAz.Persistence/bin
+/Infrastructure/BinaAz.Persistence/obj
+/Presentation/BinaAz.API/bin
+/Presentation/BinaAz.API/obj
+/Presentation/BinaAz.API/logs
+/Presentation/BinaAz.API/wwwroot/
+

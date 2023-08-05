@@ -7,6 +7,7 @@ public static class ServiceRegistration
 {
     public static void AddApplicationServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         //services.AddHttpClient();

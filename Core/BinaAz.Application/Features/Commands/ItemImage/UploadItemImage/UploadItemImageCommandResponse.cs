@@ -2,5 +2,5 @@
 
 public class UploadItemImageCommandResponse
 {
-    
+    public List<Guid> ImageIds { get; set; }
 }

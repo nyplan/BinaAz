@@ -30,6 +30,5 @@ namespace BinaAz.API.Controllers
             var response = await _mediator.Send(new RegisterWithEmailCommandRequest() { Dto = dto });
             return Ok(response);
         }
-        
     }
 }

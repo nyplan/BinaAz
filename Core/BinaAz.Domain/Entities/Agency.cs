@@ -1,11 +1,8 @@
-﻿using BinaAz.Domain.Entities.Common;
+﻿namespace BinaAz.Domain.Entities;
 
-namespace BinaAz.Domain.Entities;
-
-public class Agency : BaseEntity
+public class Agency : User
 {
-    public string CompanyName { get; set; }
-    public string RelevantPerson { get; set; }
-    public string Email { get; set; }
-    public string Phone { get; set; }
+    public string CompanyName { get; set; } = null!;
+    public string RelevantPerson { get; set; } = null!;
+    public bool IsResidentialComplex { get; set; }
 }

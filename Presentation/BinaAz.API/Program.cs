@@ -1,11 +1,11 @@
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json.Serialization;
 using BinaAz.API.Configurations.ColumnWriters;
 using BinaAz.API.Extensions;
 using BinaAz.Application;
 using BinaAz.Application.DTOs.User;
 using BinaAz.Infrastructure;
-using BinaAz.Infrastructure.Services.Storages.Azure;
 using BinaAz.Persistence;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -23,10 +23,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices();
-
-//builder.Services.AddStorage<LocalStorage>();
-builder.Services.AddStorage<AzureStorage>();
-//builder.Services.AddStorage();
 
 Logger log = new LoggerConfiguration()
     .WriteTo.File("logs/log.txt")
@@ -55,7 +51,7 @@ builder.Services.AddHttpLogging(logging =>
     logging.ResponseBodyLogLimit = 4096;
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();

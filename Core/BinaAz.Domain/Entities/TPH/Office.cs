@@ -1,7 +1,9 @@
-﻿namespace BinaAz.Domain.Entities.TPH;
+﻿using BinaAz.Domain.Entities.TPH.Base;
+using BinaAz.Domain.Enums;
+
+namespace BinaAz.Domain.Entities.TPH;
 
 public class Office : Item
 {
-    public int TypeOfBuildingId { get; set; }
-    public EnumValue? TypeOfBuilding { get; set; }
+    public TypeOfOffice? TypeOfOffice { get; set; }
 }

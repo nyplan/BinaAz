@@ -3,7 +3,6 @@
 public class PaymentMethod
 {
     // Bank Karti
-    // Portmanat
     // Shexsi Hesab (0.00)
 }
 

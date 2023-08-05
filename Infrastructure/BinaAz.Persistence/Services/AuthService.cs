@@ -1,6 +1,7 @@
 ﻿using BinaAz.Application.Abstractions.Services;
 using BinaAz.Application.Abstractions.Token;
 using BinaAz.Application.DTOs.Tokens;
+using BinaAz.Application.Exceptions;
 using BinaAz.Application.Repositories;
 using BinaAz.Domain.Entities;
 using BinaAz.Infrastructure.Operations;
@@ -23,11 +24,11 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task<JsonWebToken> LoginAsync(string phoneOrEmail, string password, int lifetime)
+    public async Task<JsonWebToken> LoginAsync(string phoneOrEmail, string password)
     {
         User user =
             await _userRepository.GetSingleAsync(x => x.Email == phoneOrEmail || x.Phone == phoneOrEmail) ??
-            throw new Exception("User does not exist");
+            throw new NotFoundUserException();
 
         bool isPasswordCorrect = PasswordOperation.VerifyPassword(password, user.Salt, user.HashedPassword);
 

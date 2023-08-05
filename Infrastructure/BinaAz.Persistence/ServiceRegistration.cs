@@ -14,11 +14,12 @@ public static class ServiceRegistration
     {
         services.AddDbContext<BinaAzDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
 
-        services.AddHttpContextAccessor();
+        //services.AddHttpContextAccessor();
         
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IItemService, ItemService>();
     }
 }

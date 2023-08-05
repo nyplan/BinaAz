@@ -178,45 +178,6 @@ namespace BinaAz.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BinaAz.Domain.Entities.EnumKey", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Key")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EnumKeys");
-                });
-
-            modelBuilder.Entity("BinaAz.Domain.Entities.EnumValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("KeyId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KeyId");
-
-                    b.ToTable("EnumValues");
-                });
-
             modelBuilder.Entity("BinaAz.Domain.Entities.Image", b =>
                 {
                     b.Property<Guid>("Id")
@@ -230,15 +191,19 @@ namespace BinaAz.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("ItemNumber")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Storage")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
 
                     b.ToTable("Images");
                 });
@@ -315,7 +280,7 @@ namespace BinaAz.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Item", b =>
+            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Base.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -343,7 +308,7 @@ namespace BinaAz.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("DayOrMonthId")
+                    b.Property<int?>("DayOrMonth")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -388,7 +353,7 @@ namespace BinaAz.Persistence.Migrations
                     b.Property<bool?>("Repair")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("SaleOrRentId")
+                    b.Property<int?>("SaleOrRent")
                         .HasColumnType("integer");
 
                     b.Property<int>("SettlementId")
@@ -401,11 +366,10 @@ namespace BinaAz.Persistence.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("DayOrMonthId");
-
                     b.HasIndex("DistrictId");
 
-                    b.HasIndex("SaleOrRentId");
+                    b.HasIndex("ItemNumber")
+                        .IsUnique();
 
                     b.HasIndex("SettlementId");
 
@@ -422,11 +386,18 @@ namespace BinaAz.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<double>("Balance")
+                        .HasColumnType("double precision");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -454,33 +425,22 @@ namespace BinaAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
 
-            modelBuilder.Entity("ImageItem", b =>
-                {
-                    b.Property<Guid>("ImagesId")
-                        .HasColumnType("uuid");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
 
-                    b.Property<Guid>("ItemsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ImagesId", "ItemsId");
-
-                    b.HasIndex("ItemsId");
-
-                    b.ToTable("ImageItem");
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Garage", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.HasDiscriminator().HasValue("Garage");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.GardenHouse", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.Property<int>("PlotOfLand")
                         .HasColumnType("integer");
@@ -490,42 +450,58 @@ namespace BinaAz.Persistence.Migrations
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Ground", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.HasDiscriminator().HasValue("Ground");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.NewBuilding", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.HasDiscriminator().HasValue("NewBuilding");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Object", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.HasDiscriminator().HasValue("Object");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Office", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
-                    b.Property<int>("TypeOfBuildingId")
+                    b.Property<int?>("TypeOfOffice")
                         .HasColumnType("integer");
-
-                    b.HasIndex("TypeOfBuildingId");
 
                     b.HasDiscriminator().HasValue("Office");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.OldBuilding", b =>
                 {
-                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Item");
+                    b.HasBaseType("BinaAz.Domain.Entities.TPH.Base.Item");
 
                     b.HasDiscriminator().HasValue("OldBuilding");
+                });
+
+            modelBuilder.Entity("BinaAz.Domain.Entities.Agency", b =>
+                {
+                    b.HasBaseType("BinaAz.Domain.Entities.User");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsResidentialComplex")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("RelevantPerson")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasDiscriminator().HasValue("Agency");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.District", b =>
@@ -539,15 +515,15 @@ namespace BinaAz.Persistence.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("BinaAz.Domain.Entities.EnumValue", b =>
+            modelBuilder.Entity("BinaAz.Domain.Entities.Image", b =>
                 {
-                    b.HasOne("BinaAz.Domain.Entities.EnumKey", "Key")
-                        .WithMany("Values")
-                        .HasForeignKey("KeyId")
+                    b.HasOne("BinaAz.Domain.Entities.TPH.Base.Item", "Item")
+                        .WithMany("Images")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Key");
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.Settlement", b =>
@@ -561,7 +537,7 @@ namespace BinaAz.Persistence.Migrations
                     b.Navigation("District");
                 });
 
-            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Item", b =>
+            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Base.Item", b =>
                 {
                     b.HasOne("BinaAz.Domain.Entities.City", "City")
                         .WithMany()
@@ -569,19 +545,9 @@ namespace BinaAz.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BinaAz.Domain.Entities.EnumValue", "DayOrMonth")
-                        .WithMany()
-                        .HasForeignKey("DayOrMonthId");
-
                     b.HasOne("BinaAz.Domain.Entities.District", "District")
                         .WithMany()
                         .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BinaAz.Domain.Entities.EnumValue", "SaleOrRent")
-                        .WithMany()
-                        .HasForeignKey("SaleOrRentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -593,39 +559,9 @@ namespace BinaAz.Persistence.Migrations
 
                     b.Navigation("City");
 
-                    b.Navigation("DayOrMonth");
-
                     b.Navigation("District");
 
-                    b.Navigation("SaleOrRent");
-
                     b.Navigation("Settlement");
-                });
-
-            modelBuilder.Entity("ImageItem", b =>
-                {
-                    b.HasOne("BinaAz.Domain.Entities.Image", null)
-                        .WithMany()
-                        .HasForeignKey("ImagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BinaAz.Domain.Entities.TPH.Item", null)
-                        .WithMany()
-                        .HasForeignKey("ItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Office", b =>
-                {
-                    b.HasOne("BinaAz.Domain.Entities.EnumValue", "TypeOfBuilding")
-                        .WithMany()
-                        .HasForeignKey("TypeOfBuildingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TypeOfBuilding");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.City", b =>
@@ -638,9 +574,9 @@ namespace BinaAz.Persistence.Migrations
                     b.Navigation("Settlements");
                 });
 
-            modelBuilder.Entity("BinaAz.Domain.Entities.EnumKey", b =>
+            modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Base.Item", b =>
                 {
-                    b.Navigation("Values");
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

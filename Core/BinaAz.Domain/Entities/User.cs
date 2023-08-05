@@ -10,4 +10,5 @@ public class User : BaseEntity
     public string Salt { get; set; } = null!;
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpires { get; set; }
+    public double Balance { get; set; }
 }

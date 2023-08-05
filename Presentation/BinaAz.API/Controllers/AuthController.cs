@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BinaAz.Application.Features.Commands.User.LoginUser;
 using BinaAz.Application.Features.Commands.User.RefreshLogin;
-using BinaAz.Domain.Entities;
 using MediatR;
-using MessageBird;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinaAz.API.Controllers
@@ -37,28 +29,5 @@ namespace BinaAz.API.Controllers
             RefreshLoginCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
-
-        
-        
-        
-
-        // static Client client = Client.CreateDefault("AL9G01ibCmCN8AflHLKNpq6vXxNQNvMTlhJm");
-        // [HttpPost("login-with-phone-number")]
-        // public async Task<IActionResult> LoginWithNumber()
-        // {
-        //     const long Number = +994557673425; // your phone number
-        //
-        //     MessageBird.Objects.Message message =
-        //         client.SendMessage("MessageBird", "Hi! This is your first message", new[] { Number });
-        //     return Ok();
-        // }
-        //
-        // [HttpPost("login-with-email")]
-        // public async Task<IActionResult> LoginWithEmail()
-        // {
-        //     return Ok();
-        // }
-        //
-        //[HttpPost("l")]
     }
 }

@@ -26,4 +26,13 @@
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\443024232\photo5305307762420469466y_70c5bfef-2140-40b5-aa83-d67d95e211fc.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\443024232\photo5305307762420469467y_1c085ba9-1fed-485a-99c6-4b29f5aa40b3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\784710428\photo5305307762420469468y_2485d902-5dc3-4198-b8e3-a55836a0dd2b.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469467y_35b11a9f-456e-49d3-8b22-dd1481d35a2b.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469469y.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469470y.jpg" />
+    </ItemGroup>
+
 </Project>
