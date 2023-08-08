@@ -16,16 +16,12 @@ public class RegisterWithPhoneCommandHandler : IRequestHandler<RegisterWithPhone
     public async Task<RegisterWithPhoneCommandResponse> Handle(RegisterWithPhoneCommandRequest request,
         CancellationToken cancellationToken)
     {
-        CreateUserResponse response = await _userService.CreateAsync(new()
+        var response = await _userService.CreateUserAsync(new()
         {
             Phone = request.Dto.Phone,
             Password = request.Dto.Password,
             PasswordConfirm = request.Dto.PasswordConfirm
         });
-        return new()
-        {
-            Message = response.Message,
-            Succeeded = response.Succeeded
-        };
+        return new() { Success = response };
     }
 }

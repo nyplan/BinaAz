@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="logs\" />
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
@@ -33,6 +34,21 @@
       <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469467y_35b11a9f-456e-49d3-8b22-dd1481d35a2b.jpg" />
       <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469469y.jpg" />
       <_ContentIncludedByDefault Remove="wwwroot\item-images\photo5305307762420469470y.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\109351592\IMG20230727133558_68b2c7c8-c3b6-4c53-adf5-cfd1b4fa5427.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\129277897\photo5305307762420469471y_bf4a995a-0397-4aa9-b26d-1a2badf5e631.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\216574573\photo5305307762420469472y_c735aa06-9d03-4d33-9dfe-3971c849db87.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\256654796\photo5305307762420469472y_9ec8026e-0e0f-4269-a6ef-eb634ac8481b.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\303997220\photo5305307762420469471y_54ffd159-5d40-4186-a224-ae96bab7c89e.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\379678380\photo5305307762420469472y_2fc9b5ad-e339-4b58-8825-25a56b74792e.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\521339457\photo5305307762420469471y_10a8d004-da33-4eef-877d-110e0d65c24e.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\536018008\photo5305307762420469471y_3c82a81b-af55-47a6-9cff-1cad3bfb1fe4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\575344538\photo5305307762420469472y_bfd22903-fb6d-4098-8093-205eeba5d618.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\614148294\photo5305307762420469471y_ae19e396-cdb1-466a-9b24-354f15640dba.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\790303942\photo5305307762420469471y_c2cea413-ead2-4257-94df-ff4eb2d94560.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\876994394\photo5305307762420469471y_ea222592-af29-4185-8b95-f460cc50cc02.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\916641928\photo5305307762420469471y_1fd07ad3-c447-417b-8fac-28c8e3efe613.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\929994792\photo5305307762420469471y_7d81c4d6-b285-41cb-807f-2032c61015c2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\968353919\IMG20230727133347_e5beb2ba-a133-4939-97e1-3b7dec7e84d4.jpg" />
     </ItemGroup>
 
 </Project>

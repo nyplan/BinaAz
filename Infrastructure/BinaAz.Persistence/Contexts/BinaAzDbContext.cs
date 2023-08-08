@@ -4,6 +4,7 @@ using BinaAz.Domain.Entities.TPH;
 using BinaAz.Domain.Entities.TPH.Base;
 using BinaAz.Persistence.DataSeeds;
 using Microsoft.EntityFrameworkCore;
+using Object = BinaAz.Domain.Entities.TPH.Object;
 
 namespace BinaAz.Persistence.Contexts;
 
@@ -20,7 +21,7 @@ public class BinaAzDbContext : DbContext
     public DbSet<GardenHouse> GardenHouses { get; set; } = null!;
     public DbSet<Ground> Grounds { get; set; } = null!;
     public DbSet<NewBuilding> NewBuildings { get; set; } = null!;
-    public DbSet<Domain.Entities.TPH.Object> Objects { get; set; } = null!;
+    public DbSet<Object> Objects { get; set; } = null!;
     public DbSet<Office> Offices { get; set; } = null!;
     public DbSet<OldBuilding> OldBuildings { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;

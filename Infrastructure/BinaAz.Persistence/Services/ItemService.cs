@@ -11,7 +11,6 @@ namespace BinaAz.Persistence.Services;
 
 public class ItemService : IItemService
 {
-    
     private readonly IMapper _mapper;
     private readonly IRepository<Item> _itemRepository;
     private readonly ILocalStorageService _localStorageService;
@@ -27,7 +26,31 @@ public class ItemService : IItemService
         var item = _mapper.Map<T>(dto);
         item.SaleOrRent = item.DayOrMonth is null ? SaleOrRent.Sale : SaleOrRent.Rent;
         item.ItemNumber = await GenerateNumber();
+        item.Status = ItemStatus.Waiting;
         return item;
+    }
+
+    public async Task<List<ItemToListDto>> MapToItemWithPaging<T>(int page, bool more, bool isRent) where T : Item
+    {
+        var items = more
+            ? await _itemRepository.Table
+                .OfType<T>()
+                .Include(x => x.Images)
+                .Include(x => x.City)
+                .Where(x => isRent ? x.SaleOrRent == SaleOrRent.Rent : x.SaleOrRent == SaleOrRent.Sale)
+                .Skip(page * 20)
+                .Take(20)
+                .ToListAsync()
+            : await _itemRepository.Table
+                .OfType<T>()
+                .Include(x => x.Images)
+                .Include(x => x.City)
+                .Where(x => isRent ? x.SaleOrRent == SaleOrRent.Rent : x.SaleOrRent == SaleOrRent.Sale)
+                .Skip(page * 4)
+                .Take(4)
+                .ToListAsync();
+
+        return _mapper.Map<List<ItemToListDto>>(items);
     }
 
     private async Task<int> GenerateNumber()

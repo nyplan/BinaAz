@@ -2,6 +2,5 @@
 
 public class RegisterWithPhoneCommandResponse
 {
-    public bool Succeeded { get; set; }
-    public string Message { get; set; }
+    public bool Success { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using BinaAz.Domain.Entities.Common;
+using BinaAz.Domain.Entities.TPH.Base;
 
 namespace BinaAz.Domain.Entities;
 
@@ -11,4 +12,8 @@ public class User : BaseEntity
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpires { get; set; }
     public double Balance { get; set; }
+    public List<Item> Items { get; set; } = new();
+
+    public Guid? ImageId { get; set; }
+    public Image? Image { get; set; }
 }

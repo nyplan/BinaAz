@@ -334,6 +334,12 @@ namespace BinaAz.Persistence.Migrations
                     b.Property<bool>("IsAgent")
                         .HasColumnType("boolean");
 
+                    b.Property<bool?>("IsPremium")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsVip")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("ItemNumber")
                         .HasColumnType("integer");
 
@@ -342,6 +348,9 @@ namespace BinaAz.Persistence.Migrations
 
                     b.Property<int>("Phone")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime?>("PremiumEnds")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer");
@@ -359,7 +368,16 @@ namespace BinaAz.Persistence.Migrations
                     b.Property<int>("SettlementId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("VipEnds")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -372,6 +390,8 @@ namespace BinaAz.Persistence.Migrations
                         .IsUnique();
 
                     b.HasIndex("SettlementId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Items");
 
@@ -406,6 +426,9 @@ namespace BinaAz.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("ImageId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
@@ -423,6 +446,8 @@ namespace BinaAz.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Users");
 
@@ -490,9 +515,15 @@ namespace BinaAz.Persistence.Migrations
                 {
                     b.HasBaseType("BinaAz.Domain.Entities.User");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("HandOverYear")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsResidentialComplex")
                         .HasColumnType("boolean");
@@ -557,11 +588,28 @@ namespace BinaAz.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BinaAz.Domain.Entities.User", "User")
+                        .WithMany("Items")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("City");
 
                     b.Navigation("District");
 
                     b.Navigation("Settlement");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BinaAz.Domain.Entities.User", b =>
+                {
+                    b.HasOne("BinaAz.Domain.Entities.Image", "Image")
+                        .WithMany("Users")
+                        .HasForeignKey("ImageId");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("BinaAz.Domain.Entities.City", b =>
@@ -574,9 +622,19 @@ namespace BinaAz.Persistence.Migrations
                     b.Navigation("Settlements");
                 });
 
+            modelBuilder.Entity("BinaAz.Domain.Entities.Image", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("BinaAz.Domain.Entities.TPH.Base.Item", b =>
                 {
                     b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("BinaAz.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,7 @@
 
 namespace BinaAz.Application.DTOs.Item.AddItem;
 
-public class AddOldBuildingRentDto
+public record AddOldBuildingRentDto : ItemToAddDto
 {
     public DayOrMonth? DayOrMonth { get; set; }
     public bool Repair { get; set; }

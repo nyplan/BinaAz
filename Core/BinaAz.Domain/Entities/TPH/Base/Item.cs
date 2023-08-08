@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using BinaAz.Domain.Entities.Common;
+﻿using BinaAz.Domain.Entities.Common;
 using BinaAz.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
 
 namespace BinaAz.Domain.Entities.TPH.Base;
 
 public class Item : BaseEntity
 {
     public int ItemNumber { get; set; }
+    public Guid UserId { get; set; }
+    public User? User { get; set; }
     
     public int CityId { get; set; }
     public City? City { get; set; }
@@ -33,4 +33,10 @@ public class Item : BaseEntity
     public int? CountOfRoom { get; set; }
     public int? Floor { get; set; }
     public int? CountOfFloor { get; set; }
+
+    public ItemStatus Status { get; set; }
+    public bool? IsVip { get; set; }
+    public DateTime? VipEnds { get; set; }
+    public bool? IsPremium { get; set; }
+    public DateTime? PremiumEnds { get; set; }
 }

@@ -1,6 +1,7 @@
 using BinaAz.Application.Features.Commands.Balance.IncreaseBalance;
+using BinaAz.Application.Features.Commands.Subscriptions.Premium;
+using BinaAz.Application.Features.Commands.Subscriptions.VIP;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinaAz.API.Controllers
@@ -17,17 +18,24 @@ namespace BinaAz.API.Controllers
         }
 
         [HttpPost("[action]")]
-        [Authorize]
         public async Task<IActionResult> IncreaseBalance([FromBody] IncreaseBalanceCommandRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
-        [HttpPost]
-        public async Task<IActionResult> MakeItemVip(string itemNumber)
+        [HttpPost("vip")]
+        public async Task<IActionResult> MakeItemVip([FromQuery] MakeItemVipCommandRequest request)
         {
-            return Ok();
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+        
+        [HttpPost("premium")]
+        public async Task<IActionResult> MakeItemPremium([FromQuery] MakeItemPremiumCommandRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

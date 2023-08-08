@@ -5,6 +5,7 @@ using BinaAz.API.Configurations.ColumnWriters;
 using BinaAz.API.Extensions;
 using BinaAz.Application;
 using BinaAz.Application.DTOs.User;
+using BinaAz.Application.Features.Commands.Item.AddItem.AddGround;
 using BinaAz.Infrastructure;
 using BinaAz.Persistence;
 using FluentValidation;
@@ -24,32 +25,32 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices();
 
-Logger log = new LoggerConfiguration()
-    .WriteTo.File("logs/log.txt")
-    .WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("PostgreSQL"), "logs", needAutoCreateTable: true,
-        columnOptions: new Dictionary<string, ColumnWriterBase>
-        {
-            { "message", new RenderedMessageColumnWriter() },
-            { "message_template", new MessageTemplateColumnWriter() },
-            { "level", new LevelColumnWriter() },
-            { "time_stamp", new TimestampColumnWriter() },
-            { "exception", new ExceptionColumnWriter() },
-            { "log_event", new LogEventSerializedColumnWriter() },
-            { "user_name", new UsernameColumnWriter() }
-        })
-    .Enrich.FromLogContext()
-    .MinimumLevel.Error()
-    .CreateLogger();
-builder.Host.UseSerilog(log);
+// Logger log = new LoggerConfiguration()
+//     .WriteTo.File("logs/log.txt")
+//     .WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("PostgreSQL"), "logs", needAutoCreateTable: true,
+//         columnOptions: new Dictionary<string, ColumnWriterBase>
+//         {
+//             { "message", new RenderedMessageColumnWriter() },
+//             { "message_template", new MessageTemplateColumnWriter() },
+//             { "level", new LevelColumnWriter() },
+//             { "time_stamp", new TimestampColumnWriter() },
+//             { "exception", new ExceptionColumnWriter() },
+//             { "log_event", new LogEventSerializedColumnWriter() },
+//             { "user_name", new UsernameColumnWriter() }
+//         })
+//     .Enrich.FromLogContext()
+//     .MinimumLevel.Error()
+//     .CreateLogger();
+// builder.Host.UseSerilog(log);
 
-builder.Services.AddHttpLogging(logging =>
-{
-    logging.LoggingFields = HttpLoggingFields.All;
-    logging.RequestHeaders.Add("sec-ch-ua");
-    logging.MediaTypeOptions.AddText("application/javascript");
-    logging.RequestBodyLogLimit = 4096;
-    logging.ResponseBodyLogLimit = 4096;
-});
+// builder.Services.AddHttpLogging(logging =>
+// {
+//     logging.LoggingFields = HttpLoggingFields.All;
+//     logging.RequestHeaders.Add("sec-ch-ua");
+//     logging.MediaTypeOptions.AddText("application/javascript");
+//     logging.RequestBodyLogLimit = 4096;
+//     logging.ResponseBodyLogLimit = 4096;
+// });
 
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
@@ -110,23 +111,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureExceptionHandler(app.Services.GetRequiredService<ILogger<Program>>());
+//app.ConfigureExceptionHandler(app.Services.GetRequiredService<ILogger<Program>>());
 app.UseStaticFiles();
 
-app.UseSerilogRequestLogging();
+//app.UseSerilogRequestLogging();
 
-app.UseHttpLogging();
+//app.UseHttpLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.Use(async (context, next) =>
-{
-    var username = context.User.Identity?.Name;
-    LogContext.PushProperty("user_name", username);
-    await next();
-});
+// app.Use(async (context, next) =>
+// {
+//     var username = context.User.Identity?.Name;
+//     LogContext.PushProperty("user_name", username);
+//     await next();
+// });
 
 app.MapControllers();
 

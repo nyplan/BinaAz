@@ -11,6 +11,8 @@ public class Image : BaseEntity
     public int ItemNumber { get; set; }
     public string FileName { get; set; } = null!;
     public string Path { get; set; } = null!;
+
+    public ICollection<User>? Users { get; set; }
     
     [NotMapped]
     public override DateTime? UpdatedAt { get => base.UpdatedAt; set => base.UpdatedAt = value; }

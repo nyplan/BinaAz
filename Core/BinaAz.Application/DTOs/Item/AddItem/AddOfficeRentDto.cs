@@ -2,7 +2,7 @@
 
 namespace BinaAz.Application.DTOs.Item.AddItem;
 
-public class AddOfficeRentDto
+public record AddOfficeRentDto : ItemToAddDto
 {
     public TypeOfOffice TypeOfOffice { get; set; }
     public int CountOfRoom { get; set; }
