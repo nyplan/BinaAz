@@ -6,6 +6,7 @@ using BinaAz.Application.Features.Commands.User.RegisterWithEmailResident;
 using BinaAz.Application.Features.Commands.User.RegisterWithPhone;
 using BinaAz.Application.Features.Commands.User.RegisterWithPhoneAgency;
 using BinaAz.Application.Features.Commands.User.RegisterWithPhoneResident;
+using BinaAz.Application.Features.Commands.User.UpdateProfilePhoto;
 using BinaAz.Application.Features.Queries.Profile.GetMe;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -84,7 +85,13 @@ namespace BinaAz.API.Controllers
             var response = await _mediator.Send(request);
             return Ok(response);
         }
-        
+
+        [HttpPut("update-profile-photo")]
+        public async Task<IActionResult> UpdateProfilePicture([FromForm] UpdateProfilePhotoCommandRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
 
         #endregion
     }

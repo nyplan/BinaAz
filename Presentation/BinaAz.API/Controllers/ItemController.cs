@@ -6,7 +6,6 @@ using BinaAz.Application.Features.Commands.Item.AddItem.AddNewBuilding;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddObject;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddOffice;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddOldBuilding;
-using BinaAz.Application.Features.Queries.ItemImage.GetItemImage;
 using BinaAz.Application.Features.Queries.Items.AgencyItems;
 using BinaAz.Application.Features.Queries.Items.Garages;
 using BinaAz.Application.Features.Queries.Items.GardenHouses;
@@ -235,12 +234,5 @@ namespace BinaAz.API.Controllers
         #endregion
 
         
-        
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GetItemImage([FromBody] GetItemImageQueryRequest request)
-        {
-            var response = await _mediator.Send(request);
-            return File(response.Stream, response.ContentType, $"item-{request.ItemNumber}");
-        }
     }
 }

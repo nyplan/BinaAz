@@ -14,35 +14,35 @@ public class LocalStorageService : ILocalStorageService
         _webHostEnvironment = webHostEnvironment;
     }
 
-    public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection files)
+    public async Task<List<string>> UploadAsync(string path, IFormFileCollection files)
     {
         string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
         if (!Directory.Exists(uploadPath))
             Directory.CreateDirectory(uploadPath);
 
-        List<(string fileName, string path)> datas = new();
+        List<string> datas = new();
         foreach (IFormFile file in files)
         {
             string fileNewName = FileRenameAsync(file.FileName);
             await using var stream = new FileStream($"{uploadPath}/{fileNewName}", FileMode.Create);
             await file.CopyToAsync(stream);
             await stream.FlushAsync();
-            datas.Add((fileNewName, path));
+            datas.Add($"{uploadPath}\\{fileNewName}");
         }
         return datas;
     }
 
     private string FileRenameAsync(string name)
     {
-        string fileName = Path.GetFileNameWithoutExtension(name);
+        //string fileName = Path.GetFileNameWithoutExtension(name);
         string fileExtension = Path.GetExtension(name);
-        string regularName = NameOperation.CharacterRegulator(fileName);
-        return $"{regularName}_{Guid.NewGuid()}{fileExtension}";
+        //string regularName = NameOperation.CharacterRegulator(fileName);
+        return $"image-{Guid.NewGuid()}{fileExtension}";
     }
 
     
-    public async Task DeleteAsync(string path, string fileName)
-        => File.Delete($"{path}\\{fileName}");
+    public async Task DeleteAsync(string path)
+        => File.Delete($"{path}");
         
     
     
@@ -53,8 +53,8 @@ public class LocalStorageService : ILocalStorageService
     }
 
     
-    public bool HasFile(string path, string fileName)
-        => File.Exists($"{_webHostEnvironment.WebRootPath}\\{path}\\{fileName}");
+    public bool HasFile(string path)
+        => File.Exists($"{path}");
 
     public FileStream GetImageStream(string path, string filename)
     {

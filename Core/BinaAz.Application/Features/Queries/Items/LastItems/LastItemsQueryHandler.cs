@@ -23,14 +23,12 @@ public class LastItemsQueryHandler : IRequestHandler<LastItemsQueryRequest, Last
         var lastItems = request.More
             ? await _itemRepository.Table
                 .Include(x => x.City)
-                .Include(x => x.Images)
                 .OrderByDescending(x => x.CreatedAt)
                 .Skip(request.Page * 20)
                 .Take(20)
                 .ToListAsync(cancellationToken)
             : await _itemRepository.Table
                 .Include(x => x.City)
-                .Include(x => x.Images)
                 .OrderByDescending(x => x.CreatedAt)
                 .Take(8)
                 .ToListAsync(cancellationToken);

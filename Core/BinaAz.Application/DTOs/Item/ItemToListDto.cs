@@ -1,10 +1,8 @@
-﻿using BinaAz.Application.DTOs.Image;
-
-namespace BinaAz.Application.DTOs.Item;
+﻿namespace BinaAz.Application.DTOs.Item;
 
 public record ItemToListDto
 {
-    public List<ImageToListDto> Images { get; set; } = null!;
+    public List<string> ImageUrls { get; set; } = null!;
     public int Price { get; set; }
     public string City { get; set; } = null!;
     public string Address { get; set; } = null!;

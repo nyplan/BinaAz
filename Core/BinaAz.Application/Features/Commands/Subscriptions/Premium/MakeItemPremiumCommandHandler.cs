@@ -53,6 +53,6 @@ public class MakeItemPremiumCommandHandler : IRequestHandler<MakeItemPremiumComm
         item.PremiumEnds = DateTime.UtcNow.AddDays(days);
         await _itemRepository.SaveAsync();
 
-        return $"Operation successfully completed! Premium ends {item.VipEnds}";
+        return $"Operation successfully completed! Premium ends {item.PremiumEnds}";
     }
 }

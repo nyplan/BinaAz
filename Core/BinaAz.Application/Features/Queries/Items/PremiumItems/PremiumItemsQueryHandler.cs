@@ -21,7 +21,6 @@ public class PremiumItemsQueryHandler : IRequestHandler<PremiumItemsQueryRequest
     public async Task<PremiumItemsQueryResponse> Handle(PremiumItemsQueryRequest request, CancellationToken cancellationToken)
     {
         var items = await _itemRepository.Table
-            .Include(x => x.Images)
             .Include(x => x.City)
             .Where(x => x.IsPremium == true)
             .Skip(request.Page * request.Size)

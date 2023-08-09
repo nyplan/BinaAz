@@ -35,7 +35,6 @@ public class ItemService : IItemService
         var items = more
             ? await _itemRepository.Table
                 .OfType<T>()
-                .Include(x => x.Images)
                 .Include(x => x.City)
                 .Where(x => isRent ? x.SaleOrRent == SaleOrRent.Rent : x.SaleOrRent == SaleOrRent.Sale)
                 .Skip(page * 20)
@@ -43,7 +42,6 @@ public class ItemService : IItemService
                 .ToListAsync()
             : await _itemRepository.Table
                 .OfType<T>()
-                .Include(x => x.Images)
                 .Include(x => x.City)
                 .Where(x => isRent ? x.SaleOrRent == SaleOrRent.Rent : x.SaleOrRent == SaleOrRent.Sale)
                 .Skip(page * 4)

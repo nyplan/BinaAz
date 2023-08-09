@@ -1,5 +1,4 @@
-﻿using BinaAz.Application.Exceptions;
-using BinaAz.Application.Extensions;
+﻿using BinaAz.Application.Extensions;
 using BinaAz.Application.Repositories;
 using BinaAz.Domain.Entities;
 using MediatR;
@@ -34,14 +33,13 @@ public class GetMeQueryHandler : IRequestHandler<GetMeQueryRequest, GetMeQueryRe
                     CompanyName = agency.CompanyName,
                     RelevantPerson = agency.RelevantPerson,
                     Balance = agency.Balance,
-                    Image = new() { Path = agency.Image?.Path ?? string.Empty, FileName = agency.Image?.FileName ?? string.Empty }
+                    ImageUrl = agency.ImageUrl?.Replace("\\", "/")
                 }
             };
         }
         else
         {
             var user = await _userRepository.Table
-                .Include(x => x.Image)
                 .FirstOrDefaultAsync(x => x.Id == meId, cancellationToken);
             return new()
             {
@@ -50,7 +48,7 @@ public class GetMeQueryHandler : IRequestHandler<GetMeQueryRequest, GetMeQueryRe
                     Email = user.Email,
                     Phone = user.Phone,
                     Balance = user.Balance,
-                    Image = new() { Path = user.Image?.Path ?? string.Empty, FileName = user.Image?.FileName ?? string.Empty }
+                    ImageUrl = user.ImageUrl?.Replace("\\", "/")
                 }
             };
         }

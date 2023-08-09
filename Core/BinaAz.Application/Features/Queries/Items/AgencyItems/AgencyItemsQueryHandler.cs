@@ -32,14 +32,12 @@ public class AgencyItemsQueryHandler : IRequestHandler<AgencyItemsQueryRequest, 
 
         var agencyItems = request.More
             ? _itemRepository.Table
-                .Include(x => x.Images)
                 .Include(x => x.City)
                 .Where(x => agencies.Contains(x.Id))
                 .Skip(request.Page * 20)
                 .Take(20)
                 .ToListAsync(cancellationToken)
             : _itemRepository.Table
-                .Include(x => x.Images)
                 .Include(x => x.City)
                 .Where(x => agencies.Contains(x.Id))
                 .Skip(request.Page * 4)

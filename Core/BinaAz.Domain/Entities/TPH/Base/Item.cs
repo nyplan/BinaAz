@@ -19,7 +19,7 @@ public class Item : BaseEntity
     public int SettlementId { get; set; }
     public Settlement? Settlement { get; set; }
     public string Address { get; set; } = null!;
-    public List<Image> Images { get; set; } = new();
+    public List<string> ImageUrls { get; set; } = new();
     public string RelevantPerson { get; set; } = null!;
     public bool IsAgent { get; set; }
     public string Email { get; set; } = null!;

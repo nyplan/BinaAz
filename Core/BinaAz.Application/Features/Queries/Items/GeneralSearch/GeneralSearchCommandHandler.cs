@@ -27,7 +27,10 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
     {
         if (request.ItemNumber is not null)
         {
-            var items = await _itemRepository.GetWhere(x => x.ItemNumber == request.ItemNumber).ToListAsync(cancellationToken);
+            var items = await _itemRepository.Table
+                .Include(x=> x.City)
+                .Where(x => x.ItemNumber == request.ItemNumber)
+                .ToListAsync(cancellationToken);
             if (items is null)
                 throw new ItemNotFoundException("Item not found");
             return _mapper.Map<List<ItemToListDto>>(items);
@@ -36,7 +39,10 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
         {
             if (request.ApartmentType == ApartmentType.NewBuilding)
             {
-                var items = _itemRepository.Table.OfType<NewBuilding>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City)
+                    .OfType<NewBuilding>()
+                    .Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 if (request.CountOfRoom is not null)
                 {
@@ -77,7 +83,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.OldBuilding)
             {
-                var items = _itemRepository.Table.OfType<OldBuilding>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<OldBuilding>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 if (request.CountOfRoom is not null)
                 {
@@ -118,7 +125,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.GardenHouse)
             {
-                var items = _itemRepository.Table.OfType<GardenHouse>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<GardenHouse>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 if (request.CountOfRoom is not null)
                 {
@@ -161,7 +169,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.Office)
             {
-                var items = _itemRepository.Table.OfType<Office>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<Office>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 if (request.CountOfRoom is not null)
                 {
@@ -198,7 +207,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.Garage)
             {
-                var items = _itemRepository.Table.OfType<Garage>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<Garage>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 items = items.Where(
                     x =>
@@ -217,7 +227,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.Ground)
             {
-                var items = _itemRepository.Table.OfType<Ground>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<Ground>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 items = items.Where(
                     x =>
@@ -236,7 +247,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
 
             if (request.ApartmentType == ApartmentType.Object)
             {
-                var items = _itemRepository.Table.OfType<Object>().Where(x => x.SaleOrRent == request.SaleOrRent);
+                var items = _itemRepository.Table
+                    .Include(x=> x.City).OfType<Object>().Where(x => x.SaleOrRent == request.SaleOrRent);
 
                 items = items.Where(
                     x =>
@@ -258,7 +270,8 @@ public class GeneralSearchCommandHandler : IRequestHandler<GeneralSearchCommandR
         }
         else
         {
-            var items = _itemRepository.Table.Where(x => x.SaleOrRent == request.SaleOrRent);
+            var items = _itemRepository.Table
+                .Include(x=> x.City).Where(x => x.SaleOrRent == request.SaleOrRent);
 
             if (request.CountOfRoom is not null)
             {

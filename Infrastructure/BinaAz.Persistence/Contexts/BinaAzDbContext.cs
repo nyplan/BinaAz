@@ -15,7 +15,9 @@ public class BinaAzDbContext : DbContext
     public DbSet<City> Cities { get; set; } = null!;
     public DbSet<District> Districts { get; set; } = null!;
     public DbSet<Settlement> Settlements { get; set; } = null!;
-    public DbSet<Image> Images { get; set; } = null!;
+    // public DbSet<Image> Images { get; set; } = null!;
+    // public DbSet<ItemImage> ItemImages { get; set; } = null!;
+    // public DbSet<ProfilePhoto> ProfilePhotos { get; set; } = null!;
     public DbSet<Item> Items { get; set; } = null!;
     public DbSet<Garage> Garages { get; set; } = null!;
     public DbSet<GardenHouse> GardenHouses { get; set; } = null!;
@@ -38,6 +40,10 @@ public class BinaAzDbContext : DbContext
         modelBuilder.Entity<Item>()
             .HasIndex(x => x.ItemNumber)
             .IsUnique();
+
+        // modelBuilder.Entity<Image>().ToTable("Images");
+        // modelBuilder.Entity<ProfilePhoto>().ToTable("ProfilePhotos");
+        // modelBuilder.Entity<ItemImage>().ToTable("ItemImages");
     }
 
 

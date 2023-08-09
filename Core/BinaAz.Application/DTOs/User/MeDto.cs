@@ -10,5 +10,5 @@ public class MeDto
     public string? Phone { get; set; }
     public double Balance { get; set; }
 
-    public ImageToListDto? Image { get; set; }
+    public string? ImageUrl { get; set; }
 }

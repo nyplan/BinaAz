@@ -38,7 +38,7 @@ public class ResidentialComplexItemsQueryHandler : IRequestHandler<ResidentialCo
                Address = residential.Address!,
                Name = residential.CompanyName,
                HandOverYear = residential.HandOverYear,
-               Image = new() { Path = residential.Image?.Path ?? string.Empty, FileName = residential.Image?.FileName ?? string.Empty},
+               ImageUrl = residential.ImageUrl?.Replace("\\", "/"),
                MinPrice = minPrice
            });
         }

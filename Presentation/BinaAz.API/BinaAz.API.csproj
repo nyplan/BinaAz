@@ -25,6 +25,7 @@
     <ItemGroup>
       <Folder Include="logs\" />
       <Folder Include="wwwroot\" />
+      <Folder Include="wwwroot\profile-photos\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -49,6 +50,13 @@
       <_ContentIncludedByDefault Remove="wwwroot\item-images\916641928\photo5305307762420469471y_1fd07ad3-c447-417b-8fac-28c8e3efe613.jpg" />
       <_ContentIncludedByDefault Remove="wwwroot\item-images\929994792\photo5305307762420469471y_7d81c4d6-b285-41cb-807f-2032c61015c2.jpg" />
       <_ContentIncludedByDefault Remove="wwwroot\item-images\968353919\IMG20230727133347_e5beb2ba-a133-4939-97e1-3b7dec7e84d4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\174318328\photo5305307762420469469y_6844a29a-4b38-4365-9465-5ca476f0e4a2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\190236683\photo5305307762420469468y_a5fba1e2-97b2-4185-887f-e7d4e3853dfa.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\483585960\photo5305307762420469468y_8461c291-3d1c-451c-9ff2-5466d9fd0d88.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\717593512\photo5305307762420469469y_ba9b812d-889f-4aab-be28-30bfa0773e94.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\735110822\photo5305307762420469468y_082bee24-6c70-49e0-b183-68555e66f9b3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\item-images\741267074\photo5305307762420469468y_d9a3a2c4-6148-4d71-9566-70591493f9b6.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\profile-photos\1c93455b-ef42-4326-ab29-21900a3eea13\photo5305307762420469468y_1b40a722-198b-47d3-97a6-6b457ff93ee7.jpg" />
     </ItemGroup>
 
 </Project>
