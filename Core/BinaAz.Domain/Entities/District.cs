@@ -1,4 +1,6 @@
-﻿namespace BinaAz.Domain.Entities;
+﻿using BinaAz.Domain.Entities.TPH.Base;
+
+namespace BinaAz.Domain.Entities;
 
 public class District
 {
@@ -6,5 +8,7 @@ public class District
     public string Name { get; set; } = null!;
     public int CityId { get; set; }
     public City? City { get; set; }
+    
     public ICollection<Settlement>? Settlements { get; set; }
+    public ICollection<Item>? Items { get; set; }
 }

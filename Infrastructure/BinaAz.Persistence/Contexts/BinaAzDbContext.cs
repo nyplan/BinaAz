@@ -3,6 +3,7 @@ using BinaAz.Domain.Entities.Common;
 using BinaAz.Domain.Entities.TPH;
 using BinaAz.Domain.Entities.TPH.Base;
 using BinaAz.Persistence.DataSeeds;
+using BinaAz.Persistence.DbConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Object = BinaAz.Domain.Entities.TPH.Object;
 
@@ -37,13 +38,7 @@ public class BinaAzDbContext : DbContext
         modelBuilder.SeedToDistrict();
         modelBuilder.SeedToSettlement();
 
-        modelBuilder.Entity<Item>()
-            .HasIndex(x => x.ItemNumber)
-            .IsUnique();
-
-        // modelBuilder.Entity<Image>().ToTable("Images");
-        // modelBuilder.Entity<ProfilePhoto>().ToTable("ProfilePhotos");
-        // modelBuilder.Entity<ItemImage>().ToTable("ItemImages");
+        modelBuilder.ApplyConfiguration(new ItemConfiguration());
     }
 
 

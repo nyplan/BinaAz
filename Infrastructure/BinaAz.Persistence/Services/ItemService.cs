@@ -51,6 +51,15 @@ public class ItemService : IItemService
         return _mapper.Map<List<ItemToListDto>>(items);
     }
 
+    public async Task<bool> ValidateItemForPublish(Item item)
+    {
+        // if (item.ImageUrls )
+        // {
+        //     
+        // }
+        return true;
+    }
+
     private async Task<int> GenerateNumber()
     {
         Random random = new Random();
