@@ -15,5 +15,5 @@ public record ItemToAddDto
     public string RelevantPerson { get; set; } = null!;
     public bool IsAgent { get; set; }
     public string Email { get; set; } = null!;
-    public int Phone { get; set; }
+    public string Phone { get; set; } = null!;
 }

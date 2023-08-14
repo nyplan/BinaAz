@@ -32,7 +32,7 @@ public class GeneralSearchCommandRequest : IRequest<List<ItemToListDto>>
     public int? ItemNumber { get; set; } = null;
 }
 
-public record CountOfRoom
+public abstract record CountOfRoom
 {
     public bool One { get; set; }
     public bool Two { get; set; }

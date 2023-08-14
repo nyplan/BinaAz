@@ -232,7 +232,6 @@ namespace BinaAz.API.Controllers
         }
         
         #endregion
-
         
     }
 }
