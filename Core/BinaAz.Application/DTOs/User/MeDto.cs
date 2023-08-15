@@ -1,6 +1,4 @@
-﻿using BinaAz.Application.DTOs.Image;
-
-namespace BinaAz.Application.DTOs.User;
+﻿namespace BinaAz.Application.DTOs.User;
 
 public class MeDto
 {

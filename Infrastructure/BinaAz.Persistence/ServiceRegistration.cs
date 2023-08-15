@@ -17,7 +17,7 @@ public static class ServiceRegistration
 
         //services.AddHttpContextAccessor();
 
-        services.AddHostedService<SubscriptionsBackgroundService>();
+        //services.AddHostedService<SubscriptionsBackgroundService>();
         
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

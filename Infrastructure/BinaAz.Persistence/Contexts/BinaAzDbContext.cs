@@ -16,9 +16,6 @@ public class BinaAzDbContext : DbContext
     public DbSet<City> Cities { get; set; } = null!;
     public DbSet<District> Districts { get; set; } = null!;
     public DbSet<Settlement> Settlements { get; set; } = null!;
-    // public DbSet<Image> Images { get; set; } = null!;
-    // public DbSet<ItemImage> ItemImages { get; set; } = null!;
-    // public DbSet<ProfilePhoto> ProfilePhotos { get; set; } = null!;
     public DbSet<Item> Items { get; set; } = null!;
     public DbSet<Garage> Garages { get; set; } = null!;
     public DbSet<GardenHouse> GardenHouses { get; set; } = null!;
@@ -28,9 +25,6 @@ public class BinaAzDbContext : DbContext
     public DbSet<Office> Offices { get; set; } = null!;
     public DbSet<OldBuilding> OldBuildings { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
-    public DbSet<Agency> Agencies { get; set; } = null!;
-    
-    
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -39,6 +33,7 @@ public class BinaAzDbContext : DbContext
         modelBuilder.SeedToSettlement();
 
         modelBuilder.ApplyConfiguration(new ItemConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 
 

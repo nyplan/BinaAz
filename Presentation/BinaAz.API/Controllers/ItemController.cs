@@ -6,6 +6,8 @@ using BinaAz.Application.Features.Commands.Item.AddItem.AddNewBuilding;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddObject;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddOffice;
 using BinaAz.Application.Features.Commands.Item.AddItem.AddOldBuilding;
+using BinaAz.Application.Features.Commands.LikedItems.DislikeAnItem;
+using BinaAz.Application.Features.Commands.LikedItems.LikeAnItem;
 using BinaAz.Application.Features.Queries.Items.AgencyItems;
 using BinaAz.Application.Features.Queries.Items.Garages;
 using BinaAz.Application.Features.Queries.Items.GardenHouses;
@@ -20,6 +22,7 @@ using BinaAz.Application.Features.Queries.Items.PremiumItems;
 using BinaAz.Application.Features.Queries.Items.ResidentialComplexItems;
 using BinaAz.Application.Features.Queries.Items.VipItems;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinaAz.API.Controllers
@@ -232,6 +235,24 @@ namespace BinaAz.API.Controllers
         }
         
         #endregion
+
+
+        #region LikeAndUnLikeItem
+
+        [HttpPost("like-item")]
+        public async Task<IActionResult> LikeAnItem([FromBody] LikeAnItemCommandRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
         
+        [HttpPost("dislike-item")]
+        public async Task<IActionResult> DislikeAnItem([FromBody] DislikeAnItemCommandRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        #endregion
     }
 }

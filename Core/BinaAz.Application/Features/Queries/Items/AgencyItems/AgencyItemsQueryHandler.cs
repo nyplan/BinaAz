@@ -25,8 +25,8 @@ public class AgencyItemsQueryHandler : IRequestHandler<AgencyItemsQueryRequest, 
         CancellationToken cancellationToken)
     {
         var agencies = await _userRepository.Table
+            .Where(x => x.IsAgency == true)
             .Include(x => x.Items)
-            .OfType<Agency>()
             .Select(x => x.Id)
             .ToListAsync(cancellationToken);
 

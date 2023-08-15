@@ -4,7 +4,7 @@ public class ResidentialComplexToListDto
 {
     public string? ImageUrl { get; set; }
     public int MinPrice { get; set; }
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
     public string Address { get; set; } = null!;
-    public int HandOverYear { get; set; }
+    public int? HandOverYear { get; set; }
 }

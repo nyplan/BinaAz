@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BinaAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BinaAz.Persistence.Migrations
 {
     [DbContext(typeof(BinaAzDbContext))]
-    partial class BinaAzDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230815070705_AddedLikedUsersTable")]
+    partial class AddedLikedUsersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,15 +391,13 @@ namespace BinaAz.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(120)
-                        .HasColumnType("character varying(120)");
+                        .HasColumnType("text");
 
                     b.Property<double>("Balance")
                         .HasColumnType("double precision");
 
                     b.Property<string>("CompanyName")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -405,8 +406,7 @@ namespace BinaAz.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("HandOverYear")
                         .HasColumnType("integer");
@@ -425,8 +425,7 @@ namespace BinaAz.Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(13)
-                        .HasColumnType("character varying(13)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
@@ -435,8 +434,7 @@ namespace BinaAz.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("RelevantPerson")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Salt")
                         .IsRequired()

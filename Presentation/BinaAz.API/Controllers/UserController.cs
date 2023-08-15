@@ -1,13 +1,12 @@
 using BinaAz.Application.DTOs.User;
 using BinaAz.Application.Features.Commands.Profile.UpdateProfile;
 using BinaAz.Application.Features.Commands.User.RegisterWithEmail;
-using BinaAz.Application.Features.Commands.User.RegisterWithEmailAgency;
-using BinaAz.Application.Features.Commands.User.RegisterWithEmailResident;
 using BinaAz.Application.Features.Commands.User.RegisterWithPhone;
-using BinaAz.Application.Features.Commands.User.RegisterWithPhoneAgency;
-using BinaAz.Application.Features.Commands.User.RegisterWithPhoneResident;
+using BinaAz.Application.Features.Commands.User.SwitchToAgency;
+using BinaAz.Application.Features.Commands.User.SwitchToResidentialComplex;
 using BinaAz.Application.Features.Commands.User.UpdateProfilePhoto;
 using BinaAz.Application.Features.Queries.Profile.GetMe;
+using BinaAz.Application.Features.Queries.Profile.GetMyItems;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,34 +39,24 @@ namespace BinaAz.API.Controllers
             return Ok(response);
         }
 
-        [HttpPost("register-with-email-agency")]
-        public async Task<IActionResult> RegisterAsAgencyWithEmail([FromBody] RegisterAsAgencyEmailDto dto)
+        #endregion
+
+        #region SwitchTo
+
+        [HttpPut("switch-to-agency")]
+        public async Task<IActionResult> SwitchToAgency([FromBody] SwitchToAgencyCommandRequest request)
         {
-            var response = await _mediator.Send(new RegisterWithEmailAgencyCommandRequest() { Dto = dto });
+            var response = await _mediator.Send(request);
             return Ok(response);
         }
         
-        [HttpPost("register-with-phone-agency")]
-        public async Task<IActionResult> RegisterAsAgencyWithPhone([FromBody] RegisterAsAgencyPhoneDto dto)
+        [HttpPut("switch-to-residential-complex")]
+        public async Task<IActionResult> SwitchToResidentialComplex([FromBody] SwitchToResidentialComplexCommandRequest request)
         {
-            var response = await _mediator.Send(new RegisterWithPhoneAgencyCommandRequest() { Dto = dto });
+            var response = await _mediator.Send(request);
             return Ok(response);
         }
-        
-        [HttpPost("register-with-email-resident")]
-        public async Task<IActionResult> RegisterAsResidentWithEmail([FromBody] RegisterAsResidentialComplexEmailDto dto)
-        {
-            var response = await _mediator.Send(new RegisterWithEmailResidentCommandRequest() { Dto = dto });
-            return Ok(response);
-        }
-        
-        [HttpPost("register-with-phone-resident")]
-        public async Task<IActionResult> RegisterAsResidentWithPhone([FromBody] RegisterAsResidentialComplexPhoneDto dto)
-        {
-            var response = await _mediator.Send(new RegisterWithPhoneResidentCommandRequest() { Dto = dto });
-            return Ok(response);
-        }
-        
+
         #endregion
 
         #region Profile
@@ -88,6 +77,13 @@ namespace BinaAz.API.Controllers
 
         [HttpPut("update-profile-photo")]
         public async Task<IActionResult> UpdateProfilePicture([FromForm] UpdateProfilePhotoCommandRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpGet("my-items")]
+        public async Task<IActionResult> MyItems([FromQuery] GetMyItemsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

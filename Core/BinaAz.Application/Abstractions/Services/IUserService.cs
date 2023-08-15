@@ -6,8 +6,6 @@ namespace BinaAz.Application.Abstractions.Services;
 public interface IUserService
 {
     Task<bool> CreateUserAsync(CreateUser model);
-    Task<bool> CreateAgencyAsync(CreateAgency model);
-    Task<bool> CreateResidentialComplexAsync(CreateResidentialComplex model);
     Task<bool> UpdateUserAsync(UpdateUser model);
     Task UpdateRefreshToken(string refreshToken, User user, DateTime accessTokenExpires, int refreshTokenLifetime);
 }

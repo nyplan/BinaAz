@@ -13,5 +13,15 @@ public class User : BaseEntity
     public DateTime? RefreshTokenExpires { get; set; }
     public double Balance { get; set; }
     public string? ImageUrl { get; set; }
+
+    public bool? IsAgency { get; set; }
+    public string? CompanyName { get; set; }
+    public string? RelevantPerson { get; set; }
+    
+    public bool? IsResidentialComplex { get; set; }
+    public string? Address { get; set; }
+    public int? HandOverYear { get; set; }
+    
     public List<Item> Items { get; set; } = new();
+    public List<Item> Liked { get; set; } = new();
 }

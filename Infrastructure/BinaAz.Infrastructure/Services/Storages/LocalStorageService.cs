@@ -1,5 +1,4 @@
 ﻿using BinaAz.Application.Abstractions.Storages;
-using BinaAz.Infrastructure.Operations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 

@@ -8,6 +8,7 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
 {
     public void Configure(EntityTypeBuilder<Item> builder)
     {
+        builder.HasOne(x => x.User).WithMany(x => x.Items).HasForeignKey(x => x.UserId);
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.HasIndex(x => x.ItemNumber).IsUnique();

@@ -9,12 +9,15 @@ public class AddGarageRentValidator : AbstractValidator<AddGarageRentDto>
     public AddGarageRentValidator()
     {
         RuleFor(x => x.Email)
-            .Cascade(CascadeMode.Stop)! 
-            .NullEmptyOrEmailAddress();
-        
+            .Cascade(CascadeMode.Stop)!
+            .NotNull()
+            .NotEmpty()
+            .EmailAddress();
+
         RuleFor(x => x.Phone)
             .Cascade(CascadeMode.Stop)!
-            .NullEmptyOrPhoneNumber();
+            .NotNull()
+            .NotEmpty();
 
         RuleFor(x => x.Address)
             .MinimumLength(20)

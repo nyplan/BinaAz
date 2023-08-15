@@ -8,6 +8,7 @@ public class Item : BaseEntity
     public int ItemNumber { get; set; }
     public Guid UserId { get; set; }
     public User? User { get; set; }
+    public List<User> LikedUsers { get; set; } = new();
     
     public int CityId { get; set; }
     public City? City { get; set; }

@@ -21,8 +21,7 @@ public class ResidentialComplexItemsQueryHandler : IRequestHandler<ResidentialCo
     public async Task<ResidentialComplexItemsQueryResponse> Handle(ResidentialComplexItemsQueryRequest request, CancellationToken cancellationToken)
     {
         var residentials = await _userRepository.Table
-            .OfType<Agency>()
-            .Where(x => x.IsResidentialComplex)
+            .Where(x => x.IsResidentialComplex == true)
             .ToListAsync(cancellationToken);
 
         var complexes = new List<ResidentialComplexToListDto>();
