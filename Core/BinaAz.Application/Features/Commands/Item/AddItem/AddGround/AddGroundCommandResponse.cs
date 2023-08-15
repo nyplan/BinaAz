@@ -1,6 +1,8 @@
-﻿namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGround;
+﻿using BinaAz.Application.Abstractions.Responses;
 
-public class AddGroundCommandResponse
+namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGround;
+
+public class AddGroundCommandResponse : GenericResponse
 {
     
 }

@@ -1,5 +1,6 @@
 ﻿using BinaAz.Application.Abstractions.Services;
 using BinaAz.Application.Abstractions.Storages;
+using BinaAz.Application.Exceptions;
 using BinaAz.Application.Extensions;
 using BinaAz.Application.Repositories;
 using BinaAz.Domain.Entities;
@@ -27,7 +28,16 @@ public class AddOldBuildingCommandHandler : IRequestHandler<AddOldBuildingComman
     public async Task<AddOldBuildingCommandResponse> Handle(AddOldBuildingCommandRequest request, CancellationToken cancellationToken)
     {
         var item = await _itemService.MapToItem<OldBuilding>(request.Dto);
-        item.UserId = _contextAccessor.HttpContext!.User.GetId();
+        if (_contextAccessor.HttpContext?.User is null)
+            throw new AuthenticationException();
+        try
+        {
+            item.UserId = _contextAccessor.HttpContext.User.GetId();
+        }
+        catch (Exception e)
+        {
+            return new() { Message = e.Message };
+        }
         var images =  await _localStorageService.UploadAsync($"item-images\\{item.ItemNumber}", request.Dto.Images);
         foreach (var image in images)
             item.ImageUrls.Add(image);

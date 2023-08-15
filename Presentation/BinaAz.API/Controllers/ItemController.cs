@@ -68,63 +68,63 @@ namespace BinaAz.API.Controllers
         }
          
         [HttpGet("residential-complexes")]
-        public async Task<IActionResult> GetResidentialComplexes(ResidentialComplexItemsQueryRequest request)
+        public async Task<IActionResult> GetResidentialComplexes([FromQuery] ResidentialComplexItemsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
         [HttpGet("premium-items")]
-        public async Task<IActionResult> GetPremiumItems(PremiumItemsQueryRequest request)
+        public async Task<IActionResult> GetPremiumItems([FromQuery] PremiumItemsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
         [HttpGet("new-buildings")]
-        public async Task<IActionResult> GetNewBuildings(NewBuildingsQueryRequest request)
+        public async Task<IActionResult> GetNewBuildings([FromQuery] NewBuildingsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
         [HttpGet("old-buildings")]
-        public async Task<IActionResult> GetOldBuildings(OldBuildingsQueryRequest request)
+        public async Task<IActionResult> GetOldBuildings([FromQuery] OldBuildingsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
         [HttpGet("garden-houses")]
-        public async Task<IActionResult> GetGardenHouses(GardenHousesQueryRequest request)
+        public async Task<IActionResult> GetGardenHouses([FromQuery] GardenHousesQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("offices")]
-        public async Task<IActionResult> GetOffices(OfficesQueryRequest request)
+        public async Task<IActionResult> GetOffices([FromQuery] OfficesQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         
         [HttpGet("garages")]
-        public async Task<IActionResult> GetGarages(GaragesQueryRequest request)
+        public async Task<IActionResult> GetGarages([FromQuery] GaragesQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("grounds")]
-        public async Task<IActionResult> GetGrounds(GroundsQueryRequest request)
+        public async Task<IActionResult> GetGrounds([FromQuery] GroundsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("objects")]
-        public async Task<IActionResult> GetObjects(ObjectsQueryRequest request)
+        public async Task<IActionResult> GetObjects([FromQuery] ObjectsQueryRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
@@ -158,7 +158,7 @@ namespace BinaAz.API.Controllers
         }
         
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddGardenHouseSale([FromForm] AddGarageSaleDto dto)
+        public async Task<IActionResult> AddGardenHouseSale([FromForm] AddGardenHouseSaleDto dto)
         {
             var response = await _mediator.Send(new AddGardenHouseCommandRequest() { Dto = dto });
             return Ok(response);

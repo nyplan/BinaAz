@@ -1,6 +1,8 @@
-﻿namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGardenHouse;
+﻿using BinaAz.Application.Abstractions.Responses;
 
-public class AddGardenHouseCommandResponse
+namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGardenHouse;
+
+public class AddGardenHouseCommandResponse : GenericResponse
 {
     
 }

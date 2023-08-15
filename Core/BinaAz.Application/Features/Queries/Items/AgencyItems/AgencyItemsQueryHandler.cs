@@ -31,13 +31,13 @@ public class AgencyItemsQueryHandler : IRequestHandler<AgencyItemsQueryRequest, 
             .ToListAsync(cancellationToken);
 
         var agencyItems = request.More
-            ? _itemRepository.Table
+            ? await _itemRepository.Table
                 .Include(x => x.City)
                 .Where(x => agencies.Contains(x.Id))
                 .Skip(request.Page * 20)
                 .Take(20)
                 .ToListAsync(cancellationToken)
-            : _itemRepository.Table
+            : await _itemRepository.Table
                 .Include(x => x.City)
                 .Where(x => agencies.Contains(x.Id))
                 .Skip(request.Page * 4)

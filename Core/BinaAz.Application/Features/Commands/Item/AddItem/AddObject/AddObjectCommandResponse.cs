@@ -1,6 +1,8 @@
-﻿namespace BinaAz.Application.Features.Commands.Item.AddItem.AddObject;
+﻿using BinaAz.Application.Abstractions.Responses;
 
-public class AddObjectCommandResponse
+namespace BinaAz.Application.Features.Commands.Item.AddItem.AddObject;
+
+public class AddObjectCommandResponse : GenericResponse
 {
     
 }

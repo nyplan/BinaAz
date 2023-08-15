@@ -1,5 +1,7 @@
-﻿namespace BinaAz.Application.Features.Commands.Item.AddItem.AddNewBuilding;
+﻿using BinaAz.Application.Abstractions.Responses;
 
-public class AddNewBuildingCommandResponse
+namespace BinaAz.Application.Features.Commands.Item.AddItem.AddNewBuilding;
+
+public class AddNewBuildingCommandResponse : GenericResponse
 {
 }

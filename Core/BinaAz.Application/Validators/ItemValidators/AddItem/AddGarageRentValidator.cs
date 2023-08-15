@@ -29,6 +29,8 @@ public class AddGarageRentValidator : AbstractValidator<AddGarageRentDto>
             .WithMessage("The area must be at least 5 square units.");
 
         RuleFor(x => x.Images)
+            .Cascade(CascadeMode.Stop)
+            .NotNull()
             .Must(x => x.Count >= 4)
             .WithMessage("At least 4 images are required.");
 

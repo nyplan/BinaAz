@@ -1,5 +1,7 @@
-﻿namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGarage;
+﻿using BinaAz.Application.Abstractions.Responses;
 
-public class AddGarageCommandResponse
+namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGarage;
+
+public class AddGarageCommandResponse : GenericResponse
 {
 }
