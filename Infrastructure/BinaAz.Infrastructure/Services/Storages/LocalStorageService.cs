@@ -33,18 +33,16 @@ public class LocalStorageService : ILocalStorageService
 
     private string FileRenameAsync(string name)
     {
-        //string fileName = Path.GetFileNameWithoutExtension(name);
         string fileExtension = Path.GetExtension(name);
-        //string regularName = NameOperation.CharacterRegulator(fileName);
         return $"image-{Guid.NewGuid()}{fileExtension}";
     }
 
-    
-    public async Task DeleteAsync(string path)
-        => File.Delete($"{path}");
-        
-    
-    
+    public Task DeleteAsync(string path)
+    {
+        File.Delete($"{path}");
+        return Task.CompletedTask;
+    }
+
     public List<string> GetFiles(string path)
     {
         DirectoryInfo directory = new(path);

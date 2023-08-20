@@ -21,17 +21,21 @@ public class MakeItemVipCommandHandler : IRequestHandler<MakeItemVipCommandReque
         _userRepository = userRepository;
     }
 
-    // Userin permissionun yoxla eger oz Item-idise onda vip ede bilsin
     public async Task<string> Handle(MakeItemVipCommandRequest request,
         CancellationToken cancellationToken)
     {
+        if (_contextAccessor.HttpContext is null)
+            throw new AuthenticationException();
         var user = await _userRepository.GetSingleAsync(x => _contextAccessor.HttpContext.User.GetId() == x.Id);
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         var item = await _itemRepository.GetSingleAsync(x => x.ItemNumber == request.ItemNumber);
         if (item is null || user.Id != item.UserId)
             throw new ItemNotFoundException();
 
+        if (item.IsPremium is true)
+            throw new Exception("You already have Premium Subscription");
+        
         int price = request.Price switch
         {
             VipType.Day5 => 10,

@@ -8,9 +8,4 @@ public static class ClaimsPrincipalExtensions
     {
         return Guid.Parse(principal.FindFirst(ClaimTypes.Sid)!.Value);
     }
-    
-    public static Guid GetUsername(this ClaimsPrincipal principal)
-    {
-        return Guid.Parse(principal.FindFirst(ClaimTypes.Name)!.Value);
-    }
 }

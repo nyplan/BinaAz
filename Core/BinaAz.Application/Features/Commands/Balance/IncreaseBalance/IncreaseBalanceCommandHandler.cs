@@ -19,9 +19,12 @@ public class IncreaseBalanceCommandHandler : IRequestHandler<IncreaseBalanceComm
 
     public async Task<IncreaseBalanceCommandResponse> Handle(IncreaseBalanceCommandRequest request, CancellationToken cancellationToken)
     {
+        if (_contextAccessor.HttpContext is null)
+            throw new AuthenticationException();
+        
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         user.Balance += request.Amount;
         await _userRepository.SaveAsync();
         return new() { Balance = user.Balance, Message = "Balance successfully increased!" };

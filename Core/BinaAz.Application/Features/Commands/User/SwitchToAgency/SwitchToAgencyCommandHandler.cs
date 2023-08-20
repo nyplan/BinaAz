@@ -24,7 +24,7 @@ public class SwitchToAgencyCommandHandler : IRequestHandler<SwitchToAgencyComman
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
 
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
 
         user.IsResidentialComplex = null;
         user.Address = null;

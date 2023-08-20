@@ -5,5 +5,5 @@ namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGarage;
 
 public class AddGarageCommandRequest : IRequest<AddGarageCommandResponse>
 {
-    public ItemToAddDto Dto { get; set; } = null!;
+    public ItemDto Dto { get; set; } = null!;
 }

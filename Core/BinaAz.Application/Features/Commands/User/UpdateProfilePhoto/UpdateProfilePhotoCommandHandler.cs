@@ -23,9 +23,11 @@ public class UpdateProfilePhotoCommandHandler : IRequestHandler<UpdateProfilePho
 
     public async Task<string> Handle(UpdateProfilePhotoCommandRequest request, CancellationToken cancellationToken)
     {
+        if (_contextAccessor.HttpContext is null)
+            throw new AuthenticationException();
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         if (user.ImageUrl is not null)
         {
             if (_storageService.HasFile(user.ImageUrl))

@@ -61,7 +61,7 @@ public class UserService : IUserService
     {
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         if (model.Email != null)
         {
             if (await _userRepository.Table.AnyAsync(x => x.Email == model.Email))

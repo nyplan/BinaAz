@@ -349,9 +349,6 @@ namespace BinaAz.Persistence.Migrations
                     b.Property<int>("SettlementId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 

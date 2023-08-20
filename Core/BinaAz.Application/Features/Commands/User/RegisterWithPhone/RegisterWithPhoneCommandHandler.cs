@@ -1,5 +1,4 @@
 ﻿using BinaAz.Application.Abstractions.Services;
-using BinaAz.Application.DTOs.User;
 using MediatR;
 
 namespace BinaAz.Application.Features.Commands.User.RegisterWithPhone;

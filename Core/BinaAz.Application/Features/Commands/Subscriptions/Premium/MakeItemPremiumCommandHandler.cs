@@ -22,9 +22,11 @@ public class MakeItemPremiumCommandHandler : IRequestHandler<MakeItemPremiumComm
 
     public async Task<string> Handle(MakeItemPremiumCommandRequest request, CancellationToken cancellationToken)
     {
+        if (_contextAccessor.HttpContext is null)
+            throw new AuthenticationException();
         var user = await _userRepository.GetSingleAsync(x => _contextAccessor.HttpContext.User.GetId() == x.Id);
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         var item = await _itemRepository.GetSingleAsync(x => x.ItemNumber == request.ItemNumber);
         if (item is null || user.Id != item.UserId)
             throw new ItemNotFoundException();
@@ -42,6 +44,7 @@ public class MakeItemPremiumCommandHandler : IRequestHandler<MakeItemPremiumComm
             throw new Exception("Insufficient amount, please increase your balance.");
         user.Balance -= price;
         item.IsPremium = true;
+        item.IsVip = null;
         int days = request.Price switch
         {
             PremiumType.Day1 => 1,
@@ -51,6 +54,7 @@ public class MakeItemPremiumCommandHandler : IRequestHandler<MakeItemPremiumComm
             _ => throw new Exception("Unsupported Premium type")
         };
         item.PremiumEnds = DateTime.UtcNow.AddDays(days);
+        item.VipEnds = null;
         await _itemRepository.SaveAsync();
 
         return $"Operation successfully completed! Premium ends {item.PremiumEnds}";

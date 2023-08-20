@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BinaAz.Application.DTOs.Item;
-using BinaAz.Application.DTOs.Item.AddItem;
+using BinaAz.Application.DTOs.Item.AddUpdateItem;
 using BinaAz.Domain.Entities.TPH;
 using BinaAz.Domain.Entities.TPH.Base;
 using Object = BinaAz.Domain.Entities.TPH.Object;
@@ -15,20 +15,20 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.City, src => src.MapFrom(x => x.City!.Name))
             .ForPath(dest => dest.ImageUrls, src => src.MapFrom(x => x.ImageUrls.Select(s => s.Replace("\\", "/"))));
 
-        CreateMap<AddGarageRentDto, Garage>();
-        CreateMap<AddGardenHouseRentDto, GardenHouse>();
-        CreateMap<AddGroundRentDto, Ground>();
-        CreateMap<AddNewBuildingRentDto, NewBuilding>();
-        CreateMap<AddObjectRentDto, Object>();
-        CreateMap<AddOfficeRentDto, Office>();
-        CreateMap<AddOldBuildingRentDto, OldBuilding>();
+        CreateMap<GarageRentDto, Garage>();
+        CreateMap<GardenHouseRentDto, GardenHouse>();
+        CreateMap<GroundRentDto, Ground>();
+        CreateMap<NewBuildingRentDto, NewBuilding>();
+        CreateMap<ObjectRentDto, Object>();
+        CreateMap<OfficeRentDto, Office>();
+        CreateMap<OldBuildingRentDto, OldBuilding>();
 
-        CreateMap<AddGarageSaleDto, Garage>();
-        CreateMap<AddGardenHouseSaleDto, GardenHouse>();
-        CreateMap<AddGroundSaleDto, Ground>();
-        CreateMap<AddNewBuildingSaleDto, NewBuilding>();
-        CreateMap<AddObjectSaleDto, Object>();
-        CreateMap<AddOfficeSaleDto, Office>();
-        CreateMap<AddOldBuildingSaleDto, OldBuilding>();
+        CreateMap<GarageSaleDto, Garage>();
+        CreateMap<GardenHouseSaleDto, GardenHouse>();
+        CreateMap<GroundSaleDto, Ground>();
+        CreateMap<NewBuildingSaleDto, NewBuilding>();
+        CreateMap<ObjectSaleDto, Object>();
+        CreateMap<OfficeSaleDto, Office>();
+        CreateMap<OldBuildingSaleDto, OldBuilding>();
     }
 }

@@ -28,7 +28,7 @@ public class AuthService : IAuthService
     {
         User user =
             await _userRepository.GetSingleAsync(x => x.Email == phoneOrEmail || x.Phone == phoneOrEmail) ??
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
 
         bool isPasswordCorrect = PasswordOperation.VerifyPassword(password, user.Salt, user.HashedPassword);
 

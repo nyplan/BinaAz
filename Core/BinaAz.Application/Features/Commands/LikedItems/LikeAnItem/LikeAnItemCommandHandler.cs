@@ -26,7 +26,7 @@ public class LikeAnItemCommandHandler : IRequestHandler<LikeAnItemCommandRequest
             throw new AuthenticationException();
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         var item = await _itemRepository.Table
             .Include(x => x.LikedUsers)
             .FirstOrDefaultAsync(x => x.ItemNumber == request.ItemNumber, cancellationToken);

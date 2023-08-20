@@ -35,7 +35,6 @@ public class Item : BaseEntity
     public int? Floor { get; set; }
     public int? CountOfFloor { get; set; }
 
-    public ItemStatus Status { get; set; }
     public bool? IsVip { get; set; }
     public DateTime? VipEnds { get; set; }
     public bool? IsPremium { get; set; }

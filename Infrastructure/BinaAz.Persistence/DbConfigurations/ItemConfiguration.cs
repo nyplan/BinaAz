@@ -20,6 +20,5 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
         builder.Property(x => x.IsAgent).IsRequired();
         builder.Property(x => x.Email).HasMaxLength(150);
         builder.Property(x => x.Phone).HasMaxLength(13);
-        builder.Property(x => x.Status).IsRequired();
     }
 }

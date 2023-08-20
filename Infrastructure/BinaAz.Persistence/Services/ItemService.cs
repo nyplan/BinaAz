@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BinaAz.Application.Abstractions.Services;
-using BinaAz.Application.Abstractions.Storages;
 using BinaAz.Application.DTOs.Item;
 using BinaAz.Application.Repositories;
 using BinaAz.Domain.Entities.TPH.Base;
@@ -13,20 +12,17 @@ public class ItemService : IItemService
 {
     private readonly IMapper _mapper;
     private readonly IRepository<Item> _itemRepository;
-    private readonly ILocalStorageService _localStorageService;
-    public ItemService(IMapper mapper, IRepository<Item> itemRepository, ILocalStorageService localStorageService)
+    public ItemService(IMapper mapper, IRepository<Item> itemRepository)
     {
         _mapper = mapper;
         _itemRepository = itemRepository;
-        _localStorageService = localStorageService;
     }
 
-    public async Task<T> MapToItem<T>(ItemToAddDto dto) where T : Item
+    public async Task<T> MapToItem<T>(ItemDto dto) where T : Item
     {
         var item = _mapper.Map<T>(dto);
         item.SaleOrRent = item.DayOrMonth is null ? SaleOrRent.Sale : SaleOrRent.Rent;
         item.ItemNumber = await GenerateNumber();
-        item.Status = ItemStatus.Waiting;
         return item;
     }
 
@@ -51,15 +47,14 @@ public class ItemService : IItemService
         return _mapper.Map<List<ItemToListDto>>(items);
     }
 
-    public async Task<bool> ValidateItemForPublish(Item item)
+    public Task<T> UpdateItem<T>(ItemDto dto, int itemNumber) where T : Item
     {
-        // if (item.ImageUrls )
-        // {
-        //     
-        // }
-        return true;
+        var item = _mapper.Map<T>(dto);
+        item.SaleOrRent = item.DayOrMonth is null ? SaleOrRent.Sale : SaleOrRent.Rent;
+        item.ItemNumber = itemNumber;
+        return Task.FromResult(item);
     }
-
+    
     private async Task<int> GenerateNumber()
     {
         Random random = new Random();

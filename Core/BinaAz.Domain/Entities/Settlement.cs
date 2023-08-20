@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using BinaAz.Domain.Entities.TPH.Base;
+﻿using BinaAz.Domain.Entities.TPH.Base;
 
 namespace BinaAz.Domain.Entities;
 

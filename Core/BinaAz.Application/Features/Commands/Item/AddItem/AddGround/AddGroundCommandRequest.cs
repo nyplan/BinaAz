@@ -5,5 +5,5 @@ namespace BinaAz.Application.Features.Commands.Item.AddItem.AddGround;
 
 public class AddGroundCommandRequest : IRequest<AddGroundCommandResponse>
 {
-    public ItemToAddDto Dto { get; set; } = null!;
+    public ItemDto Dto { get; set; } = null!;
 }

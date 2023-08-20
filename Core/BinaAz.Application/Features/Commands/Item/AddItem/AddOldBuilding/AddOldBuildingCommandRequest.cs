@@ -5,5 +5,5 @@ namespace BinaAz.Application.Features.Commands.Item.AddItem.AddOldBuilding;
 
 public class AddOldBuildingCommandRequest : IRequest<AddOldBuildingCommandResponse>
 {
-    public ItemToAddDto Dto { get; set; } = null!;
+    public ItemDto Dto { get; set; } = null!;
 }

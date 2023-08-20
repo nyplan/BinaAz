@@ -30,7 +30,7 @@ public class GetLikedItemsQueryHandler : IRequestHandler<GetLikedItemsQueryReque
 
         var user = await _userRepository.GetSingleAsync(x => x.Id == _contextAccessor.HttpContext.User.GetId());
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
 
         return new() { LikedItems = _mapper.Map<List<ItemToListDto>>(user.Liked) };
 

@@ -11,7 +11,5 @@ public static class ServiceRegistration
         services.AddHttpContextAccessor();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<AddGroundCommandHandler>());
-
-        //services.AddHttpClient();
     }
 }

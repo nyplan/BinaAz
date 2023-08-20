@@ -25,7 +25,7 @@ public class GetMeQueryHandler : IRequestHandler<GetMeQueryRequest, GetMeQueryRe
         var user = await _userRepository.Table.FirstOrDefaultAsync(x => x.Id == meId, cancellationToken);
 
         if (user is null)
-            throw new NotFoundUserException();
+            throw new UserNotFoundException();
         
         return new()
         {

@@ -25,15 +25,15 @@ namespace BinaAz.API.Controllers
 
         #region Registration
 
-        [HttpPost("register-with-phone-user")]
-        public async Task<IActionResult> RegisterAsUserWithPhone([FromBody] RegisterWithPhoneDto dto)
+        [HttpPost("register-with-phone")]
+        public async Task<IActionResult> RegisterWithPhone([FromBody] RegisterWithPhoneDto dto)
         {
             var response = await _mediator.Send(new RegisterWithPhoneCommandRequest() { Dto = dto});
             return Ok(response);
         }
 
-        [HttpPost("register-with-email-user")]
-        public async Task<IActionResult> RegisterAsUserWithEmail([FromBody] RegisterWithEmailDto dto)
+        [HttpPost("register-with-email")]
+        public async Task<IActionResult> RegisterWithEmail([FromBody] RegisterWithEmailDto dto)
         {
             var response = await _mediator.Send(new RegisterWithEmailCommandRequest() { Dto = dto });
             return Ok(response);
@@ -68,8 +68,8 @@ namespace BinaAz.API.Controllers
             return Ok(response);
         }
 
-        [HttpPut("update-user")]
-        public async Task<IActionResult> UpdateProfile([FromQuery] UpdateUserProfileCommandRequest request)
+        [HttpPut("update-profile")]
+        public async Task<IActionResult> UpdateProfile([FromQuery] UpdateProfileCommandRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

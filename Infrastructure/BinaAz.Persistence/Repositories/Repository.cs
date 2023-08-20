@@ -17,9 +17,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
 
     public DbSet<TEntity> Table => _context.Set<TEntity>();
    
-    public IQueryable<TEntity> GetAll(bool tracking = true)
-        => tracking ? Table : Table.AsNoTracking();
-
     public IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> expression, bool tracking = true)
         => tracking ? Table.Where(expression) : Table.Where(expression).AsNoTracking();
 
@@ -27,13 +24,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
         =>  tracking ? 
             await Table.FirstOrDefaultAsync(expression) : 
             await Table.AsNoTracking().FirstOrDefaultAsync(expression);
-
-    public async Task<TEntity?> GetByIdAsync(string id, bool tracking = true)
-        => tracking ?
-            await Table.FindAsync(Guid.Parse(id)) :
-            await Table.AsNoTracking().FirstOrDefaultAsync(data => data.Id == Guid.Parse(id)); // Marker Pattern
-    
-    
     
     public async Task<bool> AddAsync(TEntity entity)
     {
@@ -41,27 +31,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
         return entityEntry.State == EntityState.Added;
     }
 
-    public async Task<bool> AddRangeAsync(List<TEntity> entities)
-    {
-        await Table.AddRangeAsync(entities);
-        return true;
-    }
-
     public bool Remove(TEntity entity)
     {
         EntityEntry<TEntity> entityEntry =  Table.Remove(entity);
         return entityEntry.State == EntityState.Deleted;
-    }
-    public bool RemoveRange(List<TEntity> entities)
-    {
-        Table.RemoveRange(entities);
-        return true;
-    }
-
-    public async Task<bool> RemoveAsync(string id)
-    {
-        TEntity? entity = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
-        return Remove(entity!);
     }
 
     public void Update(TEntity entity)

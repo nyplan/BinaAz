@@ -5,5 +5,5 @@ namespace BinaAz.Application.Features.Commands.Item.AddItem.AddOffice;
 
 public class AddOfficeCommandRequest : IRequest<AddOfficeCommandResponse>
 {
-    public ItemToAddDto Dto { get; set; } = null!;
+    public ItemDto Dto { get; set; } = null!;
 }
